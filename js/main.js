@@ -6,7 +6,7 @@ const refs = {
     stopBtn: document.querySelector('[data-action="stop"]'),
 }
 
-let checkIndex;
+let checkIndex = null;
 let intervalId = null;
 
 const randomIntegerFromInterval = (min, max) => {
@@ -16,8 +16,11 @@ const randomIntegerFromInterval = (min, max) => {
 const changeColors = (arr) => {
 
     let colorsIndex = randomIntegerFromInterval(0, arr.length - 1);
+
     if (checkIndex === colorsIndex) {
-        colorsIndex++;
+        colorsIndex += 1;
+        if (colorsIndex > arr.length - 1)
+            colorsIndex = 0;
     }
 
     refs.body.style.backgroundColor = colors[colorsIndex];
